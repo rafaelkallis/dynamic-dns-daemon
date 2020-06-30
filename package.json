@@ -5,5 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "aws-sdk": "~2.708.0",
+    "axios": "^0.19.2",
+    "envalid": "^6.0.2"
   }
 }
