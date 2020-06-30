@@ -9,7 +9,7 @@ const config = envalid.cleanEnv(process.env, {
   AWS_SECRET_ACCESS_KEY: envalid.str(),
   HOSTED_ZONE_ID: envalid.str(),
   TARGET_HOSTNAME: envalid.str(),
-  SYNC_PERIOD_SECONDS: envalid.num({ devDefault: 5 }),
+  SYNC_PERIOD_SECONDS: envalid.num(),
 });
 
 if (config.isProduction) {
@@ -25,6 +25,7 @@ async function synchronize() {
   const localIp = await getLocalIp();
   const remoteIp = await getRemoteIp();
   if (localIp === remoteIp) { return; }
+  console.info(`new public ip detected for "${config.TARGET_HOSTNAME}", "${remoteIp}" -> "${localIp}"`);
   await updateRemoteIp(localIp);
 }
 
